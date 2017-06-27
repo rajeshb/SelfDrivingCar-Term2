@@ -1,6 +1,6 @@
 # Extended Kalman Filter Project
 
-## Please see the starter code instructions below for setting up the environment
+`Please see the starter code instructions below for setting up the environment`
 
 ## Basic Build Instructions
 
@@ -12,7 +12,7 @@
 
 ## Run the simulator and select project 1/2. Test with Dataset1 and Dataset2.
 
-Known limitation: You may need to shutdown/restart the app (./ExtendedKF) before switching from one dataset to another for testing.
+`Known limitation: You may need to shutdown/restart the app (./ExtendedKF) before switching from one dataset to another for testing.`
 
 ## Output
 
