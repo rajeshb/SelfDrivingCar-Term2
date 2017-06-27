@@ -1,4 +1,28 @@
-# Extended Kalman Filter Project Starter Code
+# Extended Kalman Filter Project
+
+## Please see the starter code instructions below for setting up the environment
+
+## Basic Build Instructions
+
+1. Clone this repo.
+2. Make a build directory under the current project directory (T2P1-Extended-Kalman-Filter): `mkdir build && cd build`
+3. Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+4. Run it: `./ExtendedKF `
+
+## Run the simulator and select project 1/2. Test with Dataset1 and Dataset2.
+
+Known limitation: You may need to shutdown/restart the app (./ExtendedKF) before switching from one dataset to another for testing.
+
+## Output
+
+### Dataset1
+![Dataset1](./output/dataset1.png)
+
+### Dataset2
+![Dataset2](./output/dataset2.png)
+
+# Project starter code instructions
 Self-Driving Car Engineer Nanodegree Program
 
 In this project you will utilize a kalman filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower that the tolerance outlined in the project rubric. 
@@ -50,14 +74,6 @@ OUTPUT: values provided by the c++ program to the simulator
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
-
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make` 
-   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
-4. Run it: `./ExtendedKF `
 
 ## Editor Settings
 
