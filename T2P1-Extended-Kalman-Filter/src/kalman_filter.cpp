@@ -52,8 +52,17 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     float vy = this->x_[3];
     float px2 = px*px;
     float py2 = py*py;
+    float px2py2_sqrt = sqrt(px2+py2);
+    float atan_value = 0.0;
+    float eps = 0.0001;
     
-    hx << sqrt(px2+py2), atan2(py, px), (px*vx + py*vy)/sqrt(px2+py2);
+    // Be aware that atan2(0.0,0.0) is undefined
+    if (fabs(px) > eps || fabs(py) > eps) {
+        atan_value = atan2(py, px);
+    }
+    
+    // avoid divide by zero with small eps
+    hx << px2py2_sqrt, atan_value, (px*vx + py*vy)/max(eps,px2py2_sqrt);
     
     VectorXd y = z - hx;
     
@@ -75,9 +84,10 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
 void KalmanFilter::UpdateCommon(const VectorXd &y) {
     MatrixXd Ht = this->H_.transpose();
-    MatrixXd S = this->H_ * this->P_ * Ht + this->R_;
+    MatrixXd PHt = this->P_ * Ht;
+    MatrixXd S = this->H_ * PHt + this->R_;
     MatrixXd Si = S.inverse();
-    MatrixXd K =  this->P_ * Ht * Si;
+    MatrixXd K =  PHt * Si;
     
     //new state
     this->x_ = this->x_ + (K * y);

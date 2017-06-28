@@ -92,9 +92,18 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
             // Coordinates convertion from polar to cartesian
             float x = rho * cos(phi);
             float y = rho * sin(phi);
-            float vx = rho_dot * cos(phi);
-            float vy = rho_dot * sin(phi);
-            ekf_.x_ << x, y, vx , vy;
+            //float vx = rho_dot * cos(phi);
+            //float vy = rho_dot * sin(phi);
+            /**
+             * This is something that a lot of students get it wrong.
+             * phi is the direction of the object relative to our car.
+             * It's not the direction in which the object is heading (i.e. heading direction).
+             * So while we can perfectly calculate px and py from phi, we cannot compute vx and vy from phi.
+             * We will need yaw (which is introduced in UKF) to compute vx and vy.
+             * So even from radar measurement, we can only compute px and py.
+             * Refer to https://goo.gl/dWj7zk
+             */
+            ekf_.x_ << x, y, 0 , 0;
         }
         else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
             /**
@@ -121,6 +130,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      */
     float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
     previous_timestamp_ = measurement_pack.timestamp_;
+    
+    // If dt is 0 (simultaneous measurements), you need not and should not predict again.
+    if (fabs(dt) < 0.0001) {
+        return;
+    }
     
     ekf_.F_(0, 2) = dt;
     ekf_.F_(1, 3) = dt;
