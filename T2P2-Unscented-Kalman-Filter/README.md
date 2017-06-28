@@ -1,3 +1,31 @@
+# Unscented Kalman Filter Project
+
+`Please see the starter code instructions below for setting up the environment`
+
+## Basic Build Instructions
+
+1. Clone this repo.
+2. Make a build directory under the current project directory (T2P2-Unscented-Kalman-Filter): `mkdir build && cd build`
+3. Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+4. Run it: `./UnscentedKF `
+
+## Run the simulator and select project 1/2. Test with Dataset1 and Dataset2.
+
+`Known limitation: You may need to shutdown/restart the app (./UnscentedKF) before switching from one dataset to another for testing.`
+
+## Results
+
+From our test results (RMSE values), Unscented Kalman Filter **outperforms** Extended Kalman Filter for the same datasets. Please refer to `T2P1-Extended-Kalman-Filter` project RMSE values for comparison.
+
+## Output
+
+### Dataset1
+![Dataset1](./output/dataset1.png)
+
+### Dataset2
+![Dataset2](./output/dataset2.png)
+
 # Unscented Kalman Filter Project Starter Code
 Self-Driving Car Engineer Nanodegree Program
 
@@ -43,15 +71,6 @@ OUTPUT: values provided by the c++ program to the simulator
 * cmake >= v3.5
 * make >= v4.1
 * gcc/g++ >= v5.4
-
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./UnscentedKF path/to/input.txt path/to/output.txt`. You can find
-   some sample inputs in 'data/'.
-    - eg. `./UnscentedKF ../data/obj_pose-laser-radar-synthetic-input.txt`
 
 ## Editor Settings
 
