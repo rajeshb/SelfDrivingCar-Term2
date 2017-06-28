@@ -62,7 +62,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     }
     
     // avoid divide by zero with small eps
-    hx << px2py2_sqrt, atan_value, (px*vx + py*vy)/max(eps,px2py2_sqrt);
+    hx << px2py2_sqrt, atan_value, (px*vx + py*vy)/fmax(eps,px2py2_sqrt);
     
     VectorXd y = z - hx;
     
