@@ -1,4 +1,39 @@
-# Overview
+# Particle Filter (Kidnapped Vehicle) Project
+
+`Please see the project overview instructions below for setting up the environment`
+
+## Basic Build/Test Instructions
+
+1. Clone this repo.
+2. Make a build directory under the current project directory (`T2P3-Kidnapped-Vehicle`): `mkdir build && cd build`
+3. Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+4. Run it: `./particle_filter `
+5. Run the simulator and select project 3 - Kidnapped Vehicle.
+6. Start the test.
+
+## Results & Observations
+
+Please refer to the results below, with different `number of particles` parameter values (10, 50, 100 and 500). 
+
+* Results clearly shows that as we increase the number of particles, error rate goes down. 
+* Execution/processing time goes up as the number of particles increases. 
+
+## Output
+
+### number of particles = 10
+![ParticleFilter10](./output/particle_filter_10.png)
+
+### number of particles = 50
+![ParticleFilter50](./output/particle_filter_50.png)
+
+### number of particles = 100
+![ParticleFilter100](./output/particle_filter_100.png)
+
+### number of particles = 500
+![ParticleFilter500](./output/particle_filter_500.png)
+
+# Project Overview
 This repository contains all the code needed to complete the final project for the Localization course in Udacity's Self-Driving Car Nanodegree.
 
 #### Submission
