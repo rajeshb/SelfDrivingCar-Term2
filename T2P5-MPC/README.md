@@ -3,11 +3,6 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
-# CarND-Controls-PID
-Self-Driving Car Engineer Nanodegree Program
-
----
-
 ## Basic Build and Test Instructions
 
 1. Clone this repo.
