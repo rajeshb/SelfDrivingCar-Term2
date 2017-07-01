@@ -3,6 +3,35 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Basic Build and Test Instructions
+
+1. Clone this repo.
+2. Make a build directory under the current project directory (T2P4-PID-Control): `mkdir build && cd build`
+3. Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+4. Run it: `./pid `
+5. Run the simulator and select project 4 to test.
+
+## Video Output
+
+* [PID Control Project - Video](https://youtu.be/ptlFws6LkBo)
+
+## Reflections
+
+* The following parameter values are tuned to achieve the desired project results.
+    * Kp = 0.2
+    * Ki = 0.0001
+    * Kd = 3.0
+    * Speed = 30.0
+* Kp was tuned to make the car run closer to the center of the lane.
+* Ki had to be very small, reduce the steady state error.
+* Kd was tuned to reduce the vehicle oscillation.
+* Speed was tuned to make sure that car doesn't cross the lane edges.
+* Tried a separate PID control for Speed. 
+    * I think, `Speed/Throttle` should be adjusted with respect to `Steering Angle`. 
+    * Higher the turning angle, speed should be adjusted lower, for example. 
+    * May be, something to explore further.
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -27,13 +56,6 @@ Self-Driving Car Engineer Nanodegree Program
 * Simulator. You can download these from the [project intro page](https://github.com/udacity/self-driving-car-sim/releases) in the classroom.
 
 There's an experimental patch for windows in this [PR](https://github.com/udacity/CarND-PID-Control-Project/pull/3)
-
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
 
 ## Editor Settings
 
