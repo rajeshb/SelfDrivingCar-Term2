@@ -3,6 +3,40 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+# CarND-Controls-PID
+Self-Driving Car Engineer Nanodegree Program
+
+---
+
+## Basic Build and Test Instructions
+
+1. Clone this repo.
+2. Make a build directory under the current project directory (T2P5-MPC): `mkdir build && cd build`
+3. Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+4. Run it: `./mpc `
+5. Run the simulator and select project 5 (MPC) to test.
+
+## Video Output
+
+* [Model Predictive Control - Project Video](https://youtu.be/n_8jIopGKsY)
+
+## Configurations & Reflections
+
+* The following parameter values are **manually tuned** to achieve the desired project results.
+    * Timestep (N) = 10 
+    * Duration (dt) = 0.1
+        * Higher the values for Timestep and Duration, resulted with high vehicle oscillation and going off the track.
+    * Reference Velocity (ref_v) = 70
+* The following multiplication factors (scale) used to achieve the desired project results.
+    * CTE_COST_SCALE        = 4000
+    * ESPI_COST_SCALE       = 1000
+    * VELOCITY_COST_SCALE   = 1
+    * STEERING_COST_SCALE   = 20000
+    * THROTTLE_COST_SCALE   = 50
+    * DELTA_COST_SCALE      = 100
+    * A_COST_SCALE          = 10
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -41,14 +75,6 @@ Self-Driving Car Engineer Nanodegree Program
 * Simulator. You can download these from the [releases tab](https://github.com/udacity/self-driving-car-sim/releases).
 * Not a dependency but read the [DATA.md](./DATA.md) for a description of the data sent back from the simulator.
 
-
-## Basic Build Instructions
-
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./mpc`.
 
 ## Tips
 
