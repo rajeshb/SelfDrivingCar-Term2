@@ -18,7 +18,7 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## Reflections
 
-* The following parameter values are tuned to achieve the desired project results.
+* The following parameter values are **manually tuned** to achieve the desired project results.
     * Kp = 0.2
     * Ki = 0.0001
     * Kd = 3.0
