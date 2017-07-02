@@ -14,15 +14,43 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## Video Output
 
-* [Model Predictive Control - Project Video](https://youtu.be/n_8jIopGKsY)
+* [Model Predictive Control - Project Video (ver #2, ref_v = 150)](https://youtu.be/_KUL9Ekk3yE)
+* [Model Predictive Control - Project Video (ver #1, ref_v =  70)](https://youtu.be/n_8jIopGKsY)
+
+## Model
+
+Kinematic model is used for prediction.
+
+### Update Equations
+
+```
+x_[t+1]   = x[t] + v[t] * cos(psi[t]) * dt
+y_[t+1]   = y[t] + v[t] * sin(psi[t]) * dt
+psi_[t+1] = psi[t] - v[t] / Lf * delta[t] * dt
+v_[t+1]   = v[t] + a[t] * dt
+cte[t+1]  = cte[t] + v[t] * sin(epsi[t]) * dt
+epsi[t+1] = psi[t] - v[t] * delta[t] / Lf * dt
+```
+
+* **state vectors**
+    * x, y   : car's location
+    * psi    : car's direction
+    * v      : velocity of the car
+    * cte    : cross track error
+    * epsi   : error in car's orientation
+* **actuators**
+    * delta  : steering angle
+    * a      : throttle
+* **constants**
+    * Lf     : 2.67, center of gravity needed related to psi and epsi
+* dt, the time difference
 
 ## Configurations & Reflections
 
 * The following parameter values are **manually tuned** to achieve the desired project results.
     * Timestep (N) = 10 
     * Duration (dt) = 0.1
-        * Higher the values for Timestep and Duration, resulted with high vehicle oscillation and going off the track.
-    * Reference Velocity (ref_v) = 70
+    * Reference Velocity (ref_v) = 150
 * The following multiplication factors (scale) used to achieve the desired project results.
     * CTE_COST_SCALE        = 4000
     * ESPI_COST_SCALE       = 1000
@@ -31,6 +59,8 @@ Self-Driving Car Engineer Nanodegree Program
     * THROTTLE_COST_SCALE   = 50
     * DELTA_COST_SCALE      = 100
     * A_COST_SCALE          = 10
+* To calculate 100ms prediction to offset latency, kinematic model is used with dt = 0.1.
+* With reference velocity increased to 150, the vehicle could reach speed upto ~100 MPH without going off the track.
 
 ## Dependencies
 
