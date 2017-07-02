@@ -65,6 +65,12 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
     return result;
 }
 
+// Center of gravity needed related to psi and epsi
+const double Lf = 2.67;
+
+// Latency for predicting time at actuation
+const double dt_pred = 0.1;
+
 int main() {
     uWS::Hub h;
     
@@ -91,7 +97,9 @@ int main() {
                     double py = j[1]["y"];
                     double psi = j[1]["psi"];
                     double v = j[1]["speed"];
-                    
+                    double delta = j[1]["steering_angle"];
+                    double a = j[1]["throttle"];
+
                     vector<double> wp_x;
                     vector<double> wp_y;
                     
@@ -115,6 +123,15 @@ int main() {
                     double cte = polyeval(coeffs, 0);
                     double epsi = -atan(coeffs[1]);
 
+                    // Predict state 100ms in advance (dt_pred = 0.1) using kinematic model
+                    // x, y and psi are zero after transformation, for 100ms prediction
+                    double px_pred = 0.0 + v * cos(0.0) * dt_pred;
+                    double py_pred = 0.0 + v * sin(0.0) * dt_pred;
+                    double psi_pred = 0.0 + v * -delta / Lf * dt_pred;
+                    double v_pred = v + a * dt_pred;
+                    double cte_pred = cte + v * sin(epsi) * dt_pred;
+                    double epsi_pred = epsi + v * -delta / Lf * dt_pred;
+                    
                     /*
                      * Calculate steering angle and throttle using MPC.
                      *
@@ -122,7 +139,7 @@ int main() {
                      *
                      */
                     Eigen::VectorXd state(6);
-                    state << 0, 0, 0, v, cte, epsi;
+                    state << px_pred, py_pred, psi_pred, v_pred, cte_pred, epsi_pred;
                     auto vars = mpc.Solve(state, coeffs);
                     
                     json msgJson;
